@@ -1,12 +1,72 @@
-{
-  "rank": 1,
-  "name": "Mattie",
-  "clan": "Vanguard Retired",
-  "ratings": {
-    "skill": 92,
-    "aim": 88,
-    "gameSense": 90
+[
+  {
+    "rank": 1,
+    "name": "Blank",
+    "clan": "Blank",
+    "skill": 0,
+    "image": "images/player1.png"
   },
-  "image": "images/mattie.png",
-  "color": "#FFD700"
-}
+  {
+    "rank": 2,
+    "name": "Blank",
+    "clan": "Blank",
+    "skill": 0,
+    "image": "images/player2.png"
+  },
+  {
+    "rank": 3,
+    "name": "Blank",
+    "clan": "Blank",
+    "skill": 0,
+    "image": "images/player3.png"
+  },
+  {
+    "rank": 4,
+    "name": "Blank",
+    "clan": "Blank",
+    "skill": 0,
+    "image": "images/player4.png"
+  },
+  {
+    "rank": 5,
+    "name": "Blank",
+    "clan": "Blank",
+    "skill": 0,
+    "image": "images/player5.png"
+  },
+  {
+    "rank": 6,
+    "name": "Blank",
+    "clan": "Blank",
+    "skill": 0,
+    "image": "images/player6.png"
+  },
+  {
+    "rank": 7,
+    "name": "Blank",
+    "clan": "Blank",
+    "skill": 0,
+    "image": "images/player7.png"
+  },
+  {
+    "rank": 8,
+    "name": "Blank",
+    "clan": "Blank",
+    "skill": 0,
+    "image": "images/player8.png"
+  },
+  {
+    "rank": 9,
+    "name": "Blank",
+    "clan": "Blank",
+    "skill": 0,
+    "image": "images/player9.png"
+  },
+  {
+    "rank": 10,
+    "name": "Blank",
+    "clan": "Blank",
+    "skill": 0,
+    "image": "images/player10.png"
+  }
+]
