@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+
+    <style>
+        body {
+            background: #1a1d22;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .player-box {
+            background: #2a2f36;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            display: block;
+            margin-top: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 6px;
+            margin-top: 3px;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #2779bd;
+        }
+
+        #container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .add-btn {
+            background: #27ae60;
+        }
+
+        .remove-btn {
+            background: #e74c3c;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Admin Panel</h1>
+<p style="text-align:center; opacity:0.7;">Edit players below and download the updated JSON file.</p>
+
+<div id="container"></div>
+
+<button class="add-btn" onclick="addPlayer()">Add New Player</button>
+<br><br>
+<button onclick="downloadJSON()">Download JSON</button>
+
+<script>
+let players = [];
+
+fetch("players.json")
+    .then(res => res.json())
+    .then(data => {
+        players = data;
+        renderPlayers();
+    });
+
+function renderPlayers() {
+    const container = document.getElementById("container");
+    container.innerHTML = "";
+
+    players.forEach((player, index) => {
+        const box = document.createElement("div");
+        box.className = "player-box";
+
+        box.innerHTML = `
+            <label>Rank</label>
+            <input type="number" value="${player.rank}" onchange="update(${index}, 'rank', this.value)">
+            
+            <label>Name</label>
+            <input type="text" value="${player.name}" onchange="update(${index}, 'name', this.value)">
+            
+            <label>Clan</label>
+            <input type="text" value="${player.clan}" onchange="update(${index}, 'clan', this.value}">
+            
+            <label>Skill Rating</label>
+            <input type="number" value="${player.skill}" onchange="update(${index}, 'skill', this.value)">
+            
+            <label>Image Filename</label>
+            <input type="text" value="${player.image}" onchange="update(${index}, 'image', this.value)">
+            
+            <button class="remove-btn" onclick="removePlayer(${index})">Remove Player</button>
+        `;
+
+        container.appendChild(box);
+    });
+}
+
+function update(index, field, value) {
+    players[index][field] = value;
+}
+
+function addPlayer() {
+    players.push({
+        rank: players.length + 1,
+        name: "Blank",
+        clan: "Blank",
+        skill: 0,
+        image: "images/newplayer.png"
+    });
+
+    renderPlayers();
+}
+
+function removePlayer(index) {
+    players.splice(index, 1);
+    renderPlayers();
+}
+
+function downloadJSON() {
+    const json = JSON.stringify(players, null, 4);
+    const blob = new Blob([json], { type: "application/json" });
+
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "players.json";
+    link.click();
+}
+</script>
+
+</body>
+</html>
