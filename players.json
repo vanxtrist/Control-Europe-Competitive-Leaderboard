@@ -1,1 +1,12 @@
-
+{
+  "rank": 1,
+  "name": "Mattie",
+  "clan": "Vanguard Retired",
+  "ratings": {
+    "skill": 92,
+    "aim": 88,
+    "gameSense": 90
+  },
+  "image": "images/mattie.png",
+  "color": "#FFD700"
+}
