@@ -1,17 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Player Leaderboard</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f4f4f6;
+      color: #1f1f1f;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .player-card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: 0.2s;
+      border: 1px solid #e1e1e1;
+    }
+
+    .player-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    }
+
+    .rank {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #4a4a4a;
+      margin-bottom: 8px;
+    }
+
+    .name {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .clan {
+      font-size: 1rem;
+      color: #6d6d6d;
+      margin-bottom: 14px;
+    }
+
+    .stats {
+      font-size: 0.95rem;
+      color: #5a5a5a;
+      border-top: 1px solid #e5e5e5;
+      padding-top: 12px;
+    }
+
+  </style>
 </head>
 <body>
 
-    <h1 class="title">Leaderboard</h1>
+  <div class="container">
+    <h1>Player Leaderboard</h1>
 
-    <div id="player-container"></div>
+    <div class="grid" id="leaderboard">
+      <!-- Cards appear here -->
+    </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script>
+    async function loadPlayers() {
+      try {
+        const response = await fetch("players.json");
+        const players = await response.json();
+
+        // Sort by skill rating TOTAL (optional)
+        players.sort((a, b) => {
+          const totalA = a.skill1 + a.skill2 + a.skill3 + a.skill4;
+          const totalB = b.skill1 + b.skill2 + b.skill3 + b.skill4;
+          return totalB - totalA;
+        });
+
+        const container = document.getElementById("leaderboard");
+        container.innerHTML = "";
+
+        players.forEach((p, index) => {
+          container.innerHTML += `
+            <div class="player-card">
+              <div class="rank">#${index + 1}</div>
+              <div class="name">${p.name}</div>
+              <div class="clan">${p.clan}</div>
+
+              <div class="stats">
+                Skill 1: ${p.skill1}<br>
+                Skill 2: ${p.skill2}<br>
+                Skill 3: ${p.skill3}<br>
+                Skill 4: ${p.skill4}
+              </div>
+            </div>
+          `;
+        });
+
+      } catch (err) {
+        console.error("Failed to load players.json", err);
+      }
+    }
+
+    loadPlayers();
+  </script>
+
 </body>
 </html>
