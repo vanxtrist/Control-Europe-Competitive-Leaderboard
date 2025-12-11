@@ -1,43 +1,43 @@
 [
     {
         "rank": 1,
-        "name": "hoody",
-        "clan": "yes",
-        "skill": "1022",
+        "name": "m.",
+        "clan": "Valhalla",
+        "skill": "10",
         "image": "images/player1.png"
     },
     {
         "rank": 2,
         "name": "Floppa",
-        "clan": "Blank",
+        "clan": "Valhalla",
         "skill": "9.7",
         "image": "images/player2.png"
     },
     {
         "rank": 3,
         "name": "Bonekoko",
-        "clan": "Blank",
+        "clan": "Valhalla",
         "skill": "9.5",
         "image": "images/player3.png"
     },
     {
         "rank": 4,
         "name": "Mattie",
-        "clan": "Blank",
+        "clan": "Valhalla",
         "skill": "9.4",
         "image": "images/player4.png"
     },
     {
         "rank": 5,
         "name": "Tuffboi",
-        "clan": "Blank",
+        "clan": "Valhalla",
         "skill": "9.3",
         "image": "images/player5.png"
     },
     {
         "rank": 6,
         "name": "S29",
-        "clan": "Blank",
+        "clan": "Valhalla",
         "skill": "9",
         "image": "images/player6.png"
     },
@@ -51,21 +51,21 @@
     {
         "rank": 8,
         "name": "Changv",
-        "clan": "Blank",
+        "clan": "Valhalla",
         "skill": "8.7",
         "image": "images/player8.png"
     },
     {
         "rank": 9,
         "name": "Nexus",
-        "clan": "Blank",
+        "clan": "Valhalla",
         "skill": "8.6",
         "image": "images/player9.png"
     },
     {
         "rank": 10,
         "name": "Baba",
-        "clan": "Blank",
+        "clan": "Valhalla",
         "skill": "8.4",
         "image": "images/player10.png"
     }
