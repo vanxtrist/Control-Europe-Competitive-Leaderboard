@@ -1,139 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leaderboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Player Leaderboard</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #111827;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f4f4f6;
-      color: #1f1f1f;
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
-    }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
 
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      padding: 30px;
-    }
+        /* Main container */
+        #player-list {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-    h1 {
-      text-align: center;
-      font-weight: 700;
-      font-size: 2.4rem;
-      margin-bottom: 30px;
-    }
+        /* Player card */
+        .player-card {
+            display: flex;
+            background: #1f2937;
+            border-radius: 14px;
+            padding: 14px;
+            margin: 12px 0;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 20px;
-    }
+        .player-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+        }
 
-    .player-card {
-      background: white;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: 0.2s ease;
-      border: 1px solid #e1e1e1;
-      text-align: center;
-    }
+        /* Player image */
+        .player-img {
+            width: 140px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+            background: #000;
+        }
 
-    .player-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-    }
+        /* Info section */
+        .player-info {
+            display: flex;
+            flex-direction: column;
+        }
 
-    .photo {
-      width: 90px;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 12px;
-      border: 2px solid #ddd;
-    }
+        .player-rank {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+        }
 
-    .rank {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #4a4a4a;
-      margin-bottom: 5px;
-    }
+        .player-clan {
+            color: #a8b3c7;
+            font-size: 14px;
+        }
 
-    .name {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .clan {
-      font-size: 1rem;
-      color: #6d6d6d;
-      margin-bottom: 12px;
-    }
-
-    .stats {
-      font-size: 0.95rem;
-      color: #5a5a5a;
-      border-top: 1px solid #e5e5e5;
-      padding-top: 12px;
-    }
-  </style>
+        /* Skill rating on right */
+        .player-skill {
+            margin-left: auto;
+            color: #6ee7ff;
+            font-size: 22px;
+            font-weight: 700;
+        }
+    </style>
 </head>
+
 <body>
+    <h1>Top Players</h1>
 
-  <div class="container">
-    <h1>Player Leaderboard</h1>
+    <div id="player-list"></div>
 
-    <div class="grid" id="leaderboard">
-      <!-- Cards load here -->
-    </div>
-  </div>
+    <script>
+        fetch("players.json")
+            .then(res => res.json())
+            .then(players => {
+                const container = document.getElementById("player-list");
+                container.innerHTML = "";
 
-  <script>
-    async function loadPlayers() {
-      try {
-        const response = await fetch("players.json");
-        const players = await response.json();
+                players.forEach(p => {
+                    container.innerHTML += `
+                        <div class="player-card">
+                            <img class="player-img" src="${p.image}" alt="${p.name}">
 
-        // Sort by rank (1 = top)
-        players.sort((a, b) => a.rank - b.rank);
+                            <div class="player-info">
+                                <div class="player-rank">#${p.rank} - ${p.name}</div>
+                                <div class="player-clan">${p.clan}</div>
+                            </div>
 
-        const container = document.getElementById("leaderboard");
-        container.innerHTML = "";
-
-        players.forEach((p) => {
-          container.innerHTML += `
-            <div class="player-card">
-              <img src="${p.image}" class="photo" />
-
-              <div class="rank">#${p.rank}</div>
-              <div class="name">${p.name}</div>
-              <div class="clan">${p.clan}</div>
-
-              <div class="stats">
-                Skill Rating: ${p.skill}
-              </div>
-            </div>
-          `;
-        });
-
-      } catch (err) {
-        console.error("Error loading players.json", err);
-      }
-    }
-
-    loadPlayers();
-  </script>
+                            <div class="player-skill">${p.skill}</div>
+                        </div>
+                    `;
+                });
+            });
+    </script>
 
 </body>
 </html>
