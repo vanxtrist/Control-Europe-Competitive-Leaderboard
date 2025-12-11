@@ -4,69 +4,69 @@
         "name": "m.",
         "clan": "Valhalla",
         "skill": "10",
-        "image": "images/player1.png"
+        "image": "m.webp"
     },
     {
         "rank": 2,
         "name": "Floppa",
         "clan": "Valhalla",
         "skill": "9.7",
-        "image": "images/player2.png"
+        "image": "floppa.webp"
     },
     {
         "rank": 3,
         "name": "Bonekoko",
         "clan": "Valhalla",
         "skill": "9.5",
-        "image": "images/player3.png"
+        "image": "bone.webp"
     },
     {
         "rank": 4,
         "name": "Mattie",
         "clan": "Valhalla",
         "skill": "9.4",
-        "image": "images/player4.png"
+        "image": "mattie.webp"
     },
     {
         "rank": 5,
         "name": "Tuffboi",
         "clan": "Valhalla",
         "skill": "9.3",
-        "image": "images/player5.png"
+        "image": "tuff.webp"
     },
     {
         "rank": 6,
         "name": "S29",
         "clan": "Valhalla",
         "skill": "9",
-        "image": "images/player6.png"
+        "image": "s29.webp"
     },
     {
         "rank": 7,
         "name": "SCizz",
         "clan": "Blank",
         "skill": "8.8",
-        "image": "images/player7.png"
+        "image": "scizz.webp"
     },
     {
         "rank": 8,
         "name": "Changv",
         "clan": "Valhalla",
         "skill": "8.7",
-        "image": "images/player8.png"
+        "image": "chanv.webp"
     },
     {
         "rank": 9,
         "name": "Nexus",
         "clan": "Valhalla",
         "skill": "8.6",
-        "image": "images/player9.png"
+        "image": "frik.webp"
     },
     {
         "rank": 10,
         "name": "Baba",
         "clan": "Valhalla",
         "skill": "8.4",
-        "image": "images/player10.png"
+        "image": "baba.webp"
     }
 ]
